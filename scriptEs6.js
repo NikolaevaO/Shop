@@ -5,22 +5,38 @@ const goods = [
 	{title: "Shoes", price: 250},
 ];
 
-const renderGoodsItem = (title, price) => {
-  return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
+class Renderer {
+  renderGoodsItem = (title, price) =>
+    `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
+
+  renderGoodsList = list => {
+    let goodsList = list.map(item => this.renderGoodsItem(item.title, item.price));
+    document.querySelector('.goods-list').innerHTML = goodsList.join(" ");
+  }
+  //renderBasket = () => {}
 };
-//сократить запись можно было бы  убрав фигурные скобки и команду return
-//так же добавляем параметры по умолчанию
-//const renderGoodsItem = (title = " ", price = 0) =>
-//`<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
+
+class Item {
+  constructor() {
+  //метод для увеличения/уменьшения изображения
+  }
+};
+
+class Basket {
+  constructor() {
+    userGoodsList = [];
+  //добавятся: метод для открытия/закрытия корзины,
+  //добавления/удаления товаров из корзины
+  }
+  userTotalPrice = () => {
+    let userTotalSum = 0;
+    for (i = 0; i < this.userGoodsList.length; i++) {
+      userTotalSum += this.userGoodsList[i].price;
+    }
+      return userTotalSum;
+  }
+};
 
 
-//если параметр всего один, кругл. скобки можно не ставить 
-const renderGoodsList = list => {
-  let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
-
-//метод map возвращает новый массив, по-этому после каждого товара на странице выводятся запятые,
-//которые убираются преобразованием массива в строку методом join
-  document.querySelector('.goods-list').innerHTML = goodsList.join(" ");
-}
-
-renderGoodsList(goods);
+let renderer = new Renderer();
+renderer.renderGoodsList(goods);
