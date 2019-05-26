@@ -16,6 +16,3 @@ let del = (basket, req) => {
 }
 
 module.exports = {add, change, del};
-
-// let delete & baskRouter TODO
-
