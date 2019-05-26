@@ -10,7 +10,6 @@ let change = (basket, req) => {
 }
 
 let del = (basket, req) => {
-  console.log(`i'm in del. req.params.id = ${req.params.id}`);
   let find = basket.contents.find(el => el.id_product === +req.params.id);
   basket.contents.splice(basket.contents.indexOf (find), 1);
   return {newBasket: JSON.stringify(basket, null, 4), name: find.product_name};
