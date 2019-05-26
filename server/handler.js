@@ -1,5 +1,6 @@
 const bask = require ('./bask');
 const fs = require ('fs');
+const logger = require('./logger');
 
 const actions = {
   add: bask.add,
@@ -17,7 +18,8 @@ let handler = (req, res, action, file) => {
         if (err) {
           res.sendStatus (404, JSON.stringify ({result: 0, text: err}));
         } else {
-          res.send ({result: 1, text: 'Успешно'})
+          res.send ({result: 1, text: 'Успешно'});
+          logger(name, action);
         }
       }) 
     }
