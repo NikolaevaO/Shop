@@ -1,20 +1,12 @@
-[
-	{
-		"quantity": 3,
-		"id_product": 139,
-		"product_name": "Клавиатура",
-		"price": 5000
-	},
-	{
-		"quantity": 1,
-		"id_product": 46,
-		"product_name": "Принтер",
-		"price": 9500
-	},
-	{
-		"quantity": 2,
-		"id_product": 28,
-		"product_name": "Монитор",
-		"price": 17700
-	}
-]
+{
+    "amount": 0,
+    "countGoods": 0,
+    "contents": [
+        {
+            "quantity": 1,
+            "id_product": 46,
+            "product_name": "Принтер",
+            "price": 1100
+        }
+    ]
+}

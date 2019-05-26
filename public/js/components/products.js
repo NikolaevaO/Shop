@@ -22,7 +22,7 @@ Vue.component('goods-list', {
 	},
 
 	mounted () {
-		this.$parent.getJson (`${API + this.catalogUrl}`)
+		this.$parent.getJson (`/api/products`)
 			.then (data => {
 				for (let el of data) {
 					this.products.push(el);
@@ -30,12 +30,12 @@ Vue.component('goods-list', {
 				}
 			});
 		// Генерирует ошибку для тестирования показа сообщения об ошибке
-		this.$parent.getJson(`getFake.json`)
-			.then(data => {
-				for(let el of data) {
-						this.products.push(el);
-				}
-			});
+		// this.$parent.getJson(`getFake.json`)
+		// 	.then(data => {
+		// 		for(let el of data) {
+		// 				this.products.push(el);
+		// 		}
+		// 	});
 		},
 
 	template:
@@ -50,7 +50,7 @@ Vue.component('goods-list', {
 Vue.component('goods-item', {
 	data() {
 		return {
-			imgCatalog: 'http://placehold.it/200x150'
+			imgCatalog: 'http://placehold.it/80x100'
 		}
 	},
 	props: ['product'],

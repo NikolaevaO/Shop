@@ -2,31 +2,31 @@
   {
     "id_product": 123,
     "product_name": "Ноутбук",
-    "price": 45600
+    "price": 4300
   },
   {
     "id_product": 456,
     "product_name": "Мышь",
-    "price": 1000
+    "price": 50
   },
   {
     "id_product": 139,
     "product_name": "Клавиатура",
-    "price": 5000
+    "price": 200
   },
   {
     "id_product": 46,
     "product_name": "Принтер",
-    "price": 9500
+    "price": 1100
   },
   {
     "id_product": 28,
     "product_name": "Монитор",
-    "price": 17700
+    "price": 800
   },
   {
     "id_product": 327,
     "product_name": "Наушники",
-    "price": 6300
+    "price": 350
   }
 ]

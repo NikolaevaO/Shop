@@ -85,7 +85,9 @@ header {
 
 .goods-list {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, 500px);
+	/* dense - Ключевое слово, указывающее заполнять элементами свободное пространство сетки. */
+	grid-auto-flow: column dense; 
+	padding: 15px;
 	justify-content: space-evenly;
 }
 
@@ -97,13 +99,17 @@ header {
 	padding: 10px;
 	display: flex;
   flex-direction: column;
-	width: 200px;
+	width: 160px;
 	text-align: center;
 }
 
 .desc {
 	border: 1px solid #c0c0c040;
-	padding: 10px;
+	padding: 12px 0;
+}
+
+h3 {
+	font-size: 1.35em;
 }
 
 p {

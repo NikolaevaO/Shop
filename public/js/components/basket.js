@@ -9,37 +9,49 @@ Vue.component('basket', {
 
 	methods: {
 		addProduct(product) {
-			this.$parent.getJson (`${API}/addToBasket.json`) .then(data => {
-					if (data.result) {
-						let find = this.basketItems.find(el => el.id_product === product.id_product);
-						if (find) {
-							find.quantity	++;
-						} else {
-							let prod = Object.assign({quantity: 1}, product);
-							this.basketItems.push(prod);
-						}
-					}
-				});
+			let find = this.basketItems.find(el => el.id_product === product.id_product);
+				if (find) {
+					this.$parent.putJson (`/api/basket/${find.id_product}`, {quantity: 1})
+						.then (data => {
+							if (data.result) {
+								find.quantity ++;
+							}
+						})	
+				}	else {
+						let prod = Object.assign ({quantity: 1}, product);
+						//post запрос чтобы записать товар в корз.,если его там нет
+						this.$parent.postJson (`/api/basket`, prod)
+						.then (data => {
+							if (data.result) {
+								this.basketItems.push (prod);
+							}
+						})	
+				}
 		},
 
 		deleteProduct(product) {
-			this.$parent.getJson (`${API}/deleteFromBasket.json`)
-			.then(data => {
-				if (data.result) {
-					if (product.quantity > 1) {
-						product.quantity --;
-					}	else {
-						this.basketItems.splice(this.basketItems.indexOf(product), 1);
+			if (product.quantity > 1) {
+				this.$parent.putJson(`/api/basket/${product.id_product}`, {quantity: -1})
+						.then (data => {
+							if (data.result) {
+								product.quantity --
+							}
+						})
+		} else {
+				this.$parent.deleteJson(`/api/basket/${product.id_product}`)
+						.then (data => {
+								if (data.result) {
+										this.basketItems.splice(this.basketItems.indexOf(product), 1);
+								}
+							})
 					}
-				}
-			});
-		},
+			},
 	},
 	
 	mounted () {
-		this.$parent.getJson (`${API + this.basketUrl}`)
+		this.$parent.getJson (`/api/basket`)
 			.then (data => {
-				for (let el of data) {
+				for (let el of data.contents) {
 					this.basketItems.push(el);
 				}
 			});
