@@ -39,7 +39,7 @@ header {
 }
 
 .button {
-	padding: 5px 20px;
+	padding: 5px 15px;
 	font-size: 18px;
 	border-radius: 10px;
 	font-weight: bold;
@@ -47,6 +47,10 @@ header {
 	transition: all ease-in-out .4s;
 	cursor: pointer;
 	border: 1px solid bisque;
+}
+
+.button:focus {
+	outline: none;
 }
 
 .cart-button {
@@ -69,11 +73,13 @@ header {
 }
 
 .buy-button:hover,
+.buy-button:focus,
 .del-button:hover,
 .button:hover {
 	color: bisque;
 	background-color: #2f2a2d;
 	border: 1px solid #2f2a2d;
+	outline: none;
 }
 
 .search {

@@ -37,6 +37,10 @@
 							<button class="del-button" @click="deleteProduct(product)">&times;</button>
 						</div>
 					</div>
+					<button class="button cart-button" type="button"
+						v-show="showBtnBuy" @click="submitOrder">
+						Купить
+					</button>
 				</div>
 			</div>
 		</header>
