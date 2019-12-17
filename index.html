@@ -1,22 +1,67 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<script src="scriptEs6.js" async></script>
-    <link rel="stylesheet" href="style.css">
-		<title>Online store</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- Стили -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<title>Shop-Vue</title>
 </head>
+
 <body>
-	<header>
-		<button class="button cart-button" type="button" onclick="">Корзина</button>
-	</header>
-	<main>
-			<div class="goods-list"></div>
-			<div class="hmb">
-				<a href="hamburger.html"><h3>А ещё у нас есть вкуснейшие гамбургеры! &#128578;</h3></a>
+	<div id="app">
+		<header>
+			<!-- Поиск -->
+			<form class="search" action="#">
+				<p><input type="text" class="button" placeholder="Поиск по сайту" :class="searchLine" @input="userSearch"> 
+				<input type="submit" class=" button cart-button" value="Найти" @click="filterGoods">
+				</p>
+			</form>
+			<!-- Корзина -->
+			<div class="basket">
+				<button class="button cart-button" type="button" @click="showBasket = !showBasket">Корзина</button>
+				<div class="basket-block" v-show="showBasket">
+					<p v-if="!basketItems.length">Ваша корзина пуста</p>
+					<div class="basket-item" v-for="product of basketItems" :key="product.id_product">
+						<img :src="imgBasket" alt="Изображение">
+						<div class="prod-description">
+							<p class="prod-title">{{product.product_name}}</p>
+							<p class="prod-quantity">Quantity: {{product.quantity}}</p>
+							<p class="prod-price">{{product.price}} each</p>
+						</div>
+						<div class="right-block">
+							<p class="product-price">{{product.quantity*product.price}}</p>
+							<button class="del-button" @click="deleteProduct(product)">&times;</button>
+						</div>
+					</div>
+					<button class="button cart-button" type="button"
+						v-show="showBtnBuy" @click="submitOrder">
+						Купить
+					</button>
+				</div>
 			</div>
-			
-	</main>
+		</header>
+		<main>
+			<!-- Товары -->
+			<div class="goods-list">      
+				<div class="goods-item" v-for="product of filteredProducts" :key="product.id_product">
+					<img :src="imgCatalog" alt="">
+					<div class="desc">
+						<h3>{{ product.product_name }}</h3>
+						<p>{{ product.price }}</p>
+						<button class="buy-button" @click="addProduct(product)">Купить</button>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<!-- Скрипты -->
+	<script src="lib/vue.js"></script>
+	<script src="lib/script.js"></script>
+
 </body>
 </html>
